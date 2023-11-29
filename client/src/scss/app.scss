@@ -1,0 +1,236 @@
+// Define variables for consistency and easy maintenance
+$primary-font: Arial, sans-serif;
+$primary-color: #444;
+$background-color: #000;
+$container-background: #eee;
+$container-max-width: 1200px;
+$container-max-height: 100vh;
+$header-padding: 3rem 1.5rem 1.5rem 1.5rem;
+$section-margin-bottom: 20px;
+$media-breakpoint: 1110px;
+
+$sidebar-width: 25rem;
+$profile-image-width: 15rem;
+//box shadow mixin
+@mixin box-shadow() {
+  // border: 0.25rem solid #fff;
+  outline: 0.25rem solid #fff;
+  outline-offset: -0.25rem;
+  border-radius: 1rem;
+  -webkit-box-shadow: 0 0 0.5rem 0.1rem rgba(34, 34, 34, 0.5);
+  -moz-box-shadow: 0 0 0.5rem 0.1rem rgba(34, 34, 34, 0.5);
+  box-shadow: 0 0 0.5rem 0.1rem rgba(34, 34, 34, 0.5);
+}
+
+:root {
+  font-family: $primary-font;
+  color: $primary-color;
+}
+
+body {
+  background-color: $background-color;
+}
+//broad styling
+h1 {
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  white-space: nowrap;
+  > span {
+    font-weight: 600;
+    display: block;
+  }
+}
+h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  text-transform: capitalize;
+}
+h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+p {
+  margin-bottom: 0.5rem;
+}
+section {
+  padding: 1rem;
+}
+a {
+  color: $primary-color;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.icon {
+  width: 1rem;
+  aspect-ratio: 1/1;
+  margin-right: 0.5rem;
+  display: inline;
+}
+.header {
+  margin: 3rem 0 1.5rem 0;
+}
+//positioning
+#container {
+  background-color: $container-background;
+  margin: 0 auto;
+  display: grid;
+  max-width: $container-max-width;
+  grid-template-columns: $sidebar-width 1fr min-content; /* Adjust the number of columns and their sizes as needed */
+  grid-template-rows: calc(min-content + 3rem) auto; /* Adjust the number of rows and their sizes as needed */
+  grid-template-areas:
+    'pic title contact'
+    'profile experience experience'
+    'traits experience experience'
+    'skills experience experience'
+    'education experience experience'
+    'footer references references';
+}
+#profile-pic {
+  grid-area: pic;
+}
+#title {
+  grid-area: title;
+}
+#profile {
+  grid-area: profile;
+}
+#contact {
+  grid-area: contact;
+}
+#experience {
+  grid-area: experience;
+}
+#education {
+  grid-area: education;
+}
+#footer {
+  grid-area: footer;
+}
+#traits {
+  grid-area: traits;
+}
+#skills {
+  grid-area: skills;
+}
+#references {
+  grid-area: references;
+}
+
+// styling
+#profile-pic {
+  > img {
+    // margin: 0 calc((($sidebar-width - $profile-image-width) / 2));
+    width: $profile-image-width;
+    margin: 0 calc((($sidebar-width - $profile-image-width) / 2) - 1rem);
+    // margin: 0;
+    aspect-ratio: 1/1;
+    object-position: center;
+    @include box-shadow();
+  }
+}
+#title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  &:last-of-type {
+    .icon {
+      margin: 0;
+      margin-left: 0.5rem;
+    }
+    width: unset;
+    > div {
+      margin-top: auto;
+    }
+  }
+  > * {
+    margin-bottom: 0.5rem;
+  }
+  h2 {
+    display: inline-block;
+    padding: 0.25rem 1rem;
+    background-color: $primary-color;
+    color: #eee;
+  }
+}
+#contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  text-align: end;
+  margin-left: auto;
+  width: unset;
+  .icon {
+    margin: 0;
+    margin-left: 0.5rem;
+  }
+  a {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+#profile {
+  background-color: white;
+}
+#skills,
+#traits {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+
+    li {
+      font-size: 0.75rem;
+      position: relative;
+      margin: 0.25rem;
+      background-color: $primary-color;
+      color: #eee;
+      padding: 0.5rem;
+    }
+  }
+}
+#experience {
+  h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  h4 {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .dates {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  ul {
+    li {
+      &:not(:last-of-type) {
+        border-left: 1px solid $primary-color;
+      }
+      margin: 0 !important;
+      padding: 1rem;
+      padding-top: 0;
+      position: relative;
+      padding-left: 1rem;
+      margin-bottom: 1rem;
+      &:before {
+        content: '';
+        position: absolute;
+        left: -0.5rem;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background-color: $primary-color;
+        border: 0.25rem solid white;
+      }
+    }
+  }
+  background-color: white;
+}
