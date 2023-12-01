@@ -4,6 +4,7 @@ import path from 'path';
 import cors from 'cors';
 import http from 'http';
 import fs from 'fs';
+import rateLimit from 'express-rate-limit';
 import { fileURLToPath } from 'url';
 import { Server } from 'socket.io';
 import { appendMessageToFile } from './utils/chatUtils.js'; // Assuming you have a utility for handling chat files
@@ -26,11 +27,20 @@ const corsOptions = {
   origin: ['http://127.0.0.1:5501', 'http://localhost:5501'],
   methods: ['GET', 'POST'],
 };
-
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+  message: 'Too many requests, please try again later.',
+});
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: corsOptions,
+  cors: {
+    origin: ['*', 'http://127.0.0.1:5501'],
+    methods: ['GET', 'POST'],
+  },
 });
 
 const PORT = process.env.PORT || 3000;
@@ -39,6 +49,7 @@ const __dirname = path.dirname(__filename);
 
 app.use(cors({ ...corsOptions, optionsSuccessStatus: 200 }));
 app.use(express.static(path.join(__dirname, '../client/dist')));
+// app.use(express.static(path.join(__dirname, '../client')));
 
 app.use('/chat', validateChatKey, chatRoute);
 app.use('/title', titleRoute);
@@ -59,6 +70,32 @@ const adminConnections = new Map();
 io.on('connection', (socket) => {
   const key = socket.handshake.query['Chat-Key'];
   const isAdmin = socket.handshake.query['Is-Admin'] === 'true';
+  console.log(socket.handshake);
+  const requestKey = socket.handshake.query['Request-Key'] === 'true';
+  console.log(requestKey);
+  if (requestKey) {
+    console.log('Requesting key');
+    //generate new key simple 6 letter uppercase and numbers
+    const key = Math.random().toString(36).substring(2, 8).toUpperCase();
+    try {
+      //read permitted keys
+      const filePath = path.join(__dirname, 'chats', 'permittedKeys.json');
+      let permittedKeys;
+      if (fs.existsSync(filePath)) {
+        permittedKeys = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+        permittedKeys.userKeys.push(key);
+        //update permitted keys
+        fs.writeFileSync(filePath, JSON.stringify(permittedKeys));
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      //send key back to client
+      socket.emit('return-key', key);
+    }
+
+    return;
+  }
 
   // Validate chat key or admin key
   if (!isKeyValid(key, isAdmin)) {

@@ -5,7 +5,7 @@
     "firstName": "Christian",
     "lastName": "Langer Fernandez",
     "role": "Designer / Developer / Manager",
-    "description": "A Fusion of Creativity and Technical Mastery. From Graphic Design to System Development, a journey of continuous evolution and innovation."
+    "description": "Wecome to my Over Engineered Resume. A Fusion of Creativity and Technical Mastery. From Graphic Design to System Development, a journey of continuous evolution and innovation."
   },
   "contact": {
     "address": "Av. Marcelo Terceros Banzer #181, Santa Cruz de la Sierra, Bolivia",
@@ -79,6 +79,14 @@
     {
       "name": "Jimmy Samai",
       "role": "CEO, Federal Cash Buyers",
+      "contact": {
+        "phone": "555-555-5555",
+        "email": "clanger412@gmail.com"
+      }
+    },
+    {
+      "name": "Giselle Valdez",
+      "role": "Human Resources, Different Streams",
       "contact": {
         "phone": "555-555-5555",
         "email": "clanger412@gmail.com"

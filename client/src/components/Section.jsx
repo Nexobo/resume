@@ -6,27 +6,31 @@ const Section = ({ endpoint, render, id, className }) => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch(`http://${`192.168.1.4`}:3000/${endpoint}`) // Update the URL to match your server's URL
-      .then((response) => {
-        //check if response is .jpeg file
-        if (response.headers.get('content-type').includes('image/jpeg')) {
-          console.log('jpeg');
-          return response.blob();
-        }
-        console.log('json');
-        const data = response.json();
-        return data;
-      })
-      .then((data) => {
-        console.log(`endpoint: ${endpoint}: ${data}`);
-        setData(data);
-      })
-      .catch((error) => console.error(`Error fetching ${endpoint}:`, error));
+    if (endpoint) {
+      fetch(`${import.meta.env.VITE_API_URL}/${endpoint}`) // Update the URL to match your server's URL
+        .then((response) => {
+          //check if response is .jpeg file
+          if (response.headers.get('content-type').includes('image/jpeg')) {
+            console.log('jpeg');
+            return response.blob();
+          }
+          console.log('json');
+          const data = response.json();
+          return data;
+        })
+        .then((data) => {
+          console.log(`endpoint: ${endpoint}: ${data}`);
+          setData(data);
+        })
+        .catch((error) => console.error(`Error fetching ${endpoint}:`, error));
+    } else {
+      console.log('no endpoint');
+      setData(true);
+    }
   }, [endpoint]);
 
   return (
     <section id={id || undefined} className={className || undefined}>
-      {console.log(`data: ${data}`)}
       {data ? render(data) : <p>Loading...</p>}
     </section>
   );

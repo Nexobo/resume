@@ -1,5 +1,6 @@
 import Section from './Section';
 import propTypes from 'prop-types';
+import CircleBullet from './mcomponents/CircleBullet';
 
 const renderReferences = (data) => (
   <>
@@ -7,14 +8,15 @@ const renderReferences = (data) => (
       <>
         {console.log(data)}
         <h2>References</h2>
+
         <ul>
           {data.map((reference, index) => (
             <li key={index}>
+              <CircleBullet />
               <h3>{reference.name}</h3>
               <h4>{reference.role}</h4>
               {reference.contact.phone && (
                 <div>
-                  <img src='./iconBase.svg' className='icon' />
                   <a href={`tel:${reference.contact.phone}`}>
                     {reference.contact.phone}
                   </a>
@@ -22,7 +24,6 @@ const renderReferences = (data) => (
               )}
               {reference.contact.email && (
                 <div>
-                  <img src='./iconBase.svg' className='icon' />
                   <a href={`mailto:${reference.contact.email}`}>
                     {reference.contact.email}
                   </a>
