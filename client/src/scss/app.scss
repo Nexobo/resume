@@ -277,7 +277,7 @@ a {
 //container media queries
 @media (max-width: $media-breakpoint) {
   :root {
-    // font-size: 12px;
+    font-size: 12px;
   }
   #container {
     grid-template-columns: 1fr; /* Adjust the number of columns and their sizes as needed */
@@ -408,6 +408,11 @@ a {
       }
     }
     background-color: white;
+  }
+  #references {
+    ul {
+      flex-direction: column;
+    }
   }
 }
 //reduce font size for small screens
@@ -558,6 +563,11 @@ a {
         color: $primary-color;
         padding: 0.5rem;
       }
+    }
+  }
+  #references {
+    ul {
+      flex-direction: row;
     }
   }
 }
