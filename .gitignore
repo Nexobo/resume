@@ -5,7 +5,7 @@ build/
 backup
 .git
 *.local
-
+**/chats/**
 # Logs
 logs/
 *.log
@@ -45,3 +45,7 @@ coverage/
 # Miscellaneous
 .DS_Store
 Thumbs.db
+
+# files
+*.jpg
+*.jpeg

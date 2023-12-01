@@ -6,7 +6,7 @@ const Section = ({ endpoint, render, id, className }) => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/${endpoint}`) // Update the URL to match your server's URL
+    fetch(`http://${`192.168.1.4`}:3000/${endpoint}`) // Update the URL to match your server's URL
       .then((response) => {
         //check if response is .jpeg file
         if (response.headers.get('content-type').includes('image/jpeg')) {

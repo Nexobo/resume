@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chat Test Client</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 10px;
+        background-color: #f4f4f4;
+      }
+      #chatInterface {
+        background: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      #messages {
+        height: 200px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+        padding: 10px;
+      }
+      #input,
+      #userName,
+      #userEmail,
+      #chatKey {
+        padding: 10px;
+        margin-bottom: 10px;
+        width: calc(100% - 22px);
+      }
+      button {
+        padding: 10px 20px;
+        background: #0056b3;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #003d82;
+      }
+      #status {
+        margin-bottom: 10px;
+      }
+    </style>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+  </head>
+  <body>
+    <div id="chatInterface">
+      <h2>User Chat Test Client</h2>
+      <input id="userName" type="text" placeholder="Enter Name" />
+      <input id="userEmail" type="email" placeholder="Enter Email" />
+      <input id="chatKey" type="text" placeholder="Enter Chat Key" />
+      <button onclick="initiateConnection()">Connect</button>
+      <button onclick="disconnect()">Disconnect</button>
+      <div id="status">Status: Disconnected</div>
+      <div id="adminStatus">Admin Status: Unknown</div>
+      <div id="messages"></div>
+      <input id="input" type="text" placeholder="Type a message..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
