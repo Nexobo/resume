@@ -37,7 +37,3 @@ Welcome to the Overengineered Resume - a testament to the "because I can" philos
 ## Why This Project?
 
 In a world where simplicity is often key, we took the road less traveled. This Overengineered Resume serves as a playful demonstration of technical prowess, creativity, and a touch of humor. It's about pushing boundaries, embracing complexity, and showcasing skills in the most convoluted way possible.
-
-## Note
-
-- The live version runs on a personal computer, using ngrok to expose it to the world. It's like opening a window from my desktop to yours.
