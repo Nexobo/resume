@@ -11,7 +11,14 @@ const renderTitle = (data) => (
     <div className='buttons'>
       <button>Print</button>
       <button>Download PDF</button>
-      <button>github</button>
+      <button>
+        <a
+          href='https://github.com/Nexobo/resume'
+          target='_blank'
+          rel='noreferrer'>
+          Github
+        </a>
+      </button>
     </div>
   </>
 );
