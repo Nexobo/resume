@@ -8,7 +8,7 @@ Welcome to the Overengineered Resume - a testament to the "because I can" philos
 
   - Built with React, showcasing components like `Profile`, `Chat`, `Experience`, and more.
   - Each component is a needle in the haystack of complexity, adding layers to what could have been a simple text file.
-  - The `Chat` component integrates a WebSocket connection, because communicating via carrier pigeons is so last millennium.
+  - The `Chat` component integrates a WebSocket connection, because communicating via carrier pigeons didn't seem practical.
 
 - **Server Side (`/server`):**
 
