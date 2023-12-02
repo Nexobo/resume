@@ -409,16 +409,16 @@ a {
     }
     background-color: white;
   }
-  #references {
-    ul {
-      flex-direction: column;
-    }
-  }
 }
 //reduce font size for small screens
 @media (max-width: $media-breakpoint-small) {
   :root {
     font-size: 12px;
+  }
+  #references {
+    ul {
+      flex-direction: column;
+    }
   }
 }
 .chat-popup {

@@ -24,7 +24,11 @@ import sanitizeHtml from 'sanitize-html';
 
 dotenv.config();
 const corsOptions = {
-  origin: ['http://127.0.0.1:5501', 'http://localhost:5501'],
+  origin: [
+    'http://127.0.0.1:5501',
+    'http://localhost:5501',
+    'https://www.nextepdesigns.com',
+  ],
   methods: ['GET', 'POST'],
 };
 const apiLimiter = rateLimit({

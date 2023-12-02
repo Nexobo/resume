@@ -14,7 +14,9 @@ const Chat = ({ id, className, togglePopup }) => {
 
   useEffect(() => {
     // Initialize WebSocket connection
-    const newSocket = io(import.meta.env.VITE_WS_URL, {
+    console.log(import.meta.env);
+    console.log(import.meta.env.VITE_WS_URL);
+    const newSocket = io(import.meta.env.VITE_API_URL, {
       query: { 'Chat-Key': chatKey },
       autoConnect: false,
     });
